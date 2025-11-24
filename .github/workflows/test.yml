@@ -4,6 +4,17 @@ on:
   # push:
   #   branches: [ main ]
   workflow_dispatch:   # ✅ Manual trigger only
+    inputs:
+      action:
+        description: "Choose Terraform action"
+        required: true
+        default: "plan"
+        type: choice
+        options:
+          - plan
+          - apply
+
+
 
 
 jobs:
@@ -26,14 +37,21 @@ jobs:
         run: terraform init
         working-directory: ec2
 
-      - name: Terraform Validate ec2
-        run: terraform validate
-        working-directory: ec2
+      # - name: Terraform Validate ec2
+      #   run: terraform validate
+      #   working-directory: ec2
 
-      - name: Terraform Plan ec2
-        run: terraform plan -out=tfplan 
-        working-directory: ec2
+      # - name: Terraform Plan ec2
+      #   run: terraform plan -out=tfplan 
+      #   working-directory: ec2
 
-      - name: Terraform Apply ec2
-        run: terraform apply -auto-approve tfplan
-        working-directory: ec2
+      # - name: Terraform Apply ec2
+      #   run: terraform apply -auto-approve tfplan
+      #   working-directory: ec2
+      - name: Terraform Plan or Apply
+        run: |
+          if [ "${{ github.event.inputs.action }}" == "plan" ]; then
+            terraform plan -out=tfplan
+          else
+            terraform apply -auto-approve tfplan
+          fi
