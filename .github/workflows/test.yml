@@ -41,23 +41,23 @@ jobs:
         run: terraform validate
         working-directory: ec2
 
-      # - name: Terraform Plan ec2
-      #   run: terraform plan -out=tfplan 
-      #   working-directory: ec2
+      - name: Terraform Plan ec2
+        run: terraform plan -out=tfplan 
+        working-directory: ec2
      
 
-      # - name: Terraform Apply ec2
-      #   run: terraform apply -auto-approve tfplan
-      #   working-directory: ec2
+      - name: Terraform Apply ec2
+        run: terraform apply -auto-approve tfplan
+        working-directory: ec2
       # - name: Terraform Destroy
       #   run: terraform destroy -auto-approve
       #   working-directory: ec2
-      - name: Terraform Plan or Apply
-        run: |
-          if [ "${{ github.event.inputs.action }}" == "plan" ]; then
-            terraform plan -out=tfplan
-          else
-             terraform plan -out=tfplan
-             terraform destroy -auto-approve tfplan
-          fi
-        working-directory: ec2
+      # - name: Terraform Plan or Apply
+      #   run: |
+      #     if [ "${{ github.event.inputs.action }}" == "plan" ]; then
+      #       terraform plan -out=tfplan
+      #     else
+      #        terraform plan -out=tfplan
+      #        terraform destroy -auto-approve tfplan
+      #     fi
+      #   working-directory: ec2
