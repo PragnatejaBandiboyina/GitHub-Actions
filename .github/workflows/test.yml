@@ -45,8 +45,8 @@ jobs:
         run: terraform plan -out=tfplan 
         working-directory: ec2
 
-      - name: Terraform Destroy ec2
-        run: terraform destroy -auto-approve tfplan
+      - name: Terraform Apply ec2
+        run: terraform apply -auto-approve tfplan
         working-directory: ec2
       # - name: Terraform Plan or Apply
       #   run: |
