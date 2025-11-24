@@ -58,6 +58,6 @@ jobs:
             terraform plan -out=tfplan
           else
              terraform plan -out=tfplan
-             terraform destroy -auto-approve tfplan
+             terraform destroy -auto-approve 
           fi
         working-directory: ec2
