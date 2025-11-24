@@ -53,6 +53,7 @@ jobs:
           if [ "${{ github.event.inputs.action }}" == "plan" ]; then
             terraform plan -out=tfplan
           else
-            terraform apply -auto-approve tfplan
+             terraform plan -out=tfplan
+             terraform apply -auto-approve tfplan
           fi
         working-directory: ec2
